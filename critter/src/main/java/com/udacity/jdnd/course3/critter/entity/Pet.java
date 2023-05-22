@@ -29,4 +29,13 @@ public class Pet {
 
 	@ManyToOne
 	private Customer customer;
+
+	public Pet(PetType type, String name, LocalDate birthDate, String notes, Customer customer) {
+		super();
+		this.type = type;
+		this.name = name;
+		this.birthDate = birthDate;
+		this.notes = notes;
+		this.customer = customer;
+	}
 }

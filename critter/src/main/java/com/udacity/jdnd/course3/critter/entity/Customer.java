@@ -27,4 +27,10 @@ public class Customer extends User {
 		this.notes = notes;
 	}
 
+	public void addPet(Pet pet) {
+		if (pets == null)
+			pets = new ArrayList<Pet>();
+		pets.add(pet);
+	}
+
 }

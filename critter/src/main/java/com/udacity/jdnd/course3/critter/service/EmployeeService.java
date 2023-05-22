@@ -9,7 +9,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.udacity.jdnd.course3.critter.entitty.Employee;
+import com.udacity.jdnd.course3.critter.entity.Employee;
 import com.udacity.jdnd.course3.critter.repository.EmployeeRepository;
 import com.udacity.jdnd.course3.critter.user.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.user.EmployeeRequestDTO;
@@ -60,7 +60,7 @@ public class EmployeeService {
 		employeeRepository.findAll().forEach(emp -> {
 			Set<EmployeeSkill> employeeSkills = convertStringToSetSkill(emp.getEmployeeSkills());
 			if (employeeSkills.containsAll(employeeDTO.getSkills())
-					&& emp.getdaysAvailable().contains(employeeDTO.getDate().getDayOfWeek().name())) {
+					&& emp.getDaysAvailable().contains(employeeDTO.getDate().getDayOfWeek().name())) {
 				employeeDTOs.add(mapEmployeeToEmployeeDTO(emp));
 			}
 		});
@@ -74,7 +74,7 @@ public class EmployeeService {
 			daysAvailableNew += "," + dayWeek.name();
 		}
 		daysAvailableNew = daysAvailableNew.substring(1);
-		employee.setdaysAvailable(daysAvailableNew);
+		employee.setDaysAvailable(daysAvailableNew);
 
 		employeeRepository.save(employee);
 	}
@@ -85,9 +85,9 @@ public class EmployeeService {
 		empDTO.setName(employee.getName());
 
 		Set<DayOfWeek> dayOfWeeks = null;
-		if (employee.getdaysAvailable().length() != 0) {
+		if (employee.getDaysAvailable().length() != 0) {
 			dayOfWeeks = new HashSet<>();
-			String[] dayAvailables = employee.getdaysAvailable().split(",");
+			String[] dayAvailables = employee.getDaysAvailable().split(",");
 			for (String dayAvailable : dayAvailables) {
 				dayOfWeeks.add(DayOfWeek.valueOf(dayAvailable));
 			}
